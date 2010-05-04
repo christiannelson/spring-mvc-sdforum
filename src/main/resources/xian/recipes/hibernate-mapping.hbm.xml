@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-lazy="false" default-access="field">
+
+    <typedef class="com.carbonfive.db.hibernate.usertypes.EnumUserType" name="UnitType">
+        <param name="enumClass">xian.recipes.model.Unit</param>
+    </typedef>
+
+
+    <class name="xian.recipes.model.Recipe" table="recipes">
+        <id name="id" column="id" type="long">
+            <generator class="native"/>
+        </id>
+        <property name="name"/>
+        <property name="description"/>
+        <property name="servingCount"/>
+        <property name="preparationTime"/>
+        <property name="cost"/>
+
+        <list name="ingredients" cascade="all,delete-orphan">
+            <key column="recipe_id" not-null="true"/>
+            <index column="idx" type="int"/>
+            <one-to-many class="xian.recipes.model.Ingredient"/>
+        </list>
+
+        <list name="steps" cascade="all,delete-orphan">
+            <key column="recipe_id" not-null="true"/>
+            <index column="idx" type="int"/>
+            <one-to-many class="xian.recipes.model.Step"/>
+        </list>
+    </class>
+
+    <class name="xian.recipes.model.Ingredient" table="ingredients">
+        <id name="id" column="id" type="long">
+            <generator class="native"/>
+        </id>
+        <property name="name"/>
+        <component name="quantity">
+            <property name="amount"/>
+            <property name="units" type="UnitType"/>
+        </component>
+        <property name="preparation"/>
+    </class>
+
+    <class name="xian.recipes.model.Step" table="steps">
+        <id name="id" column="id" type="long">
+            <generator class="native"/>
+        </id>
+        <property name="directions"/>
+    </class>
+
+</hibernate-mapping>

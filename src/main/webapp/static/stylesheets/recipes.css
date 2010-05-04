@@ -1,0 +1,46 @@
+input.blur, textarea.blur {
+  color: #999;
+}
+
+th {
+  text-align: left;
+}
+
+td {
+  padding-right: 20px;
+}
+
+.error {
+  background-color: #ff9999;
+}
+.recipe-name {
+  width: 300px;
+}
+
+.description {
+  width: 300px;
+}
+
+.ingredients li {
+  list-style: none;
+}
+
+.ingredients .amount {
+  width: 50px;
+}
+
+.ingredients .units {
+  width: 100px;
+}
+
+.ingredients .name {
+  width: 150px;
+}
+
+.ingredients .preparation {
+  width: 306px;
+}
+
+.steps input[type='text'] {
+  width: 630px;
+}
